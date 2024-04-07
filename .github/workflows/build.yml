@@ -17,7 +17,10 @@ jobs:
         id: cacher
         uses: actions/cache@v3
         with:
-          path: "%USERPROFILE%\\Documents\\PowerShell\\Modules"
+          path: |
+            "C:\\Modules\\*"
+            "C:\\program files\\powershell\\7\\Modules\\*"
+            "%USERPROFILE%\\Documents\\PowerShell\\Modules\\*"
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
       - name: Install required PowerShell modules
