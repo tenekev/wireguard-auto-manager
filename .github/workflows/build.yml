@@ -6,12 +6,13 @@ permissions:
   contents: write
 
 jobs:
-  Run-PS2EXE-on-Windows:
-    name: Run PS2EXE on Windows
+  build-binary:
+    name: Build Wireguard Auto Manager binary
     runs-on: windows-latest
     steps:
       
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup PowerShell module cache
         uses: actions/cache@v3
@@ -31,8 +32,28 @@ jobs:
         shell: powershell
         run: |
           . ps2exe wg_auto_manager.ps1 wg_auto_manager.exe -NoConsole -noOutput
+  
+      - name: Artifacting
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          retention-days: 1
+          path: |
+            *.exe
+            *.ps1
 
-      - name: Release
+  release-binary:
+    name: Release Wireguard Auto Manager binary
+    runs-on: windows-latest
+    steps:
+      
+      - name: De-artifacting
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          path: .
+      
+      - name: Release Wireguard Auto Manager binary
         uses: softprops/action-gh-release@v2
         #if: startsWith(github.ref, 'refs/tags/')
         with:
