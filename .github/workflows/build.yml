@@ -8,7 +8,7 @@ permissions:
 jobs:
   Run-PS2EXE-on-Windows:
     name: Run PS2EXE on Windows
-    runs-on: windows-latest
+    runs-on: ubuntu-latest #windows-latest
     steps:
       
       - uses: actions/checkout@v3
@@ -17,9 +17,7 @@ jobs:
         id: cacher
         uses: actions/cache@v3
         with:
-          path: |
-            C:\\Modules\\*
-            %USERPROFILE%\\Documents\\PowerShell\\Modules\\*
+          path: "~/.local/share/powershell/Modules"
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
       - name: Install required PowerShell modules
