@@ -19,7 +19,6 @@ jobs:
         with:
           path: |
             C:\\Modules\\*
-            C:\\program files\\powershell\\7\\Modules\\*
             %USERPROFILE%\\Documents\\PowerShell\\Modules\\*
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
