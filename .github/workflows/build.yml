@@ -44,6 +44,7 @@ jobs:
 
   release-binary:
     name: Release Wireguard Auto Manager binary
+    needs: build-binary
     runs-on: windows-latest
     steps:
       
