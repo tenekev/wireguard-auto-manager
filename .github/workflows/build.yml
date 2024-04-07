@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v3
         id: cacher
         with:
-          path: "C:\\Program Files\\WindowsPowerShell\\Modules"
+          path: "C:\\Program Files\\WindowsPowerShell\\Modules\\ps2exe"
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
       - name: Install required PowerShell modules
