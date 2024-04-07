@@ -17,10 +17,11 @@ jobs:
         id: cacher
         uses: actions/cache@v3
         with:
-          path: "C:\\Users\\runneradmin\\Documents\\PowerShell\\Modules\\*"
+          path: "~/.local/share/powershell/Modules"
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
-      - name: Install PS2EXE module
+      - name: Install required PowerShell modules
+        if: steps.cacher.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
