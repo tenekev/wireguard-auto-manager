@@ -15,7 +15,7 @@ jobs:
 
       - shell: powershell
         run: |
-          tree C:\Modules
+          tree C:\program files\powershell\7\Modules
 
       - name: Setup PowerShell module cache
         uses: actions/cache@v3
