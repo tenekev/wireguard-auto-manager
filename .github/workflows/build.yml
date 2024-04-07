@@ -30,6 +30,14 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module ps2exe
+
+      - shell: powershell
+        run: |
+          tree C:\program files\powershell\7\Modules
+
+      - shell: powershell
+        run: |
+          tree C:\Users\runneradmin\
       
       - name: Build binary
         shell: powershell
