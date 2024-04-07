@@ -13,17 +13,13 @@ jobs:
       
       - uses: actions/checkout@v3
 
-      # - shell: powershell
-      #   run: |
-      #     tree "C:\\Program Files\\WindowsPowerShell\\Modules"
-
       - name: Setup PowerShell module cache
         uses: actions/cache@v3
         id: cacher
         with:
           path: "C:\\Program Files\\WindowsPowerShell\\Modules\\ps2exe"
           key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
-      
+
       - name: Install required PowerShell modules
         if: steps.cacher.outputs.cache-hit != 'true'
         shell: powershell
@@ -31,15 +27,6 @@ jobs:
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module ps2exe
 
-      # - shell: powershell
-      #   run: |
-      #     tree "C:\\Program Files\\WindowsPowerShell\\Modules"
-
-
-      # - shell: powershell
-      #   run: |
-      #     tree C:\Users\runneradmin\
-      
       - name: Build binary
         shell: powershell
         run: |
@@ -50,4 +37,6 @@ jobs:
         #if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: "v1"
-          files: "*.exe"
+          files: |
+            *.ps1
+            *.exe
