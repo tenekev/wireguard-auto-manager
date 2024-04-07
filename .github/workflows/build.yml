@@ -22,13 +22,13 @@ jobs:
       
       - name: Install required PowerShell modules
         if: steps.cacher.outputs.cache-hit != 'true'
-        shell: powershell
+        shell: pwsh
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module ps2exe
       
       - name: Build binary
-        shell: powershell
+        shell: pwsh
         run: |
           . ps2exe wg_auto_manager.ps1 wg_auto_manager.exe -NoConsole -noOutput
 
