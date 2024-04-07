@@ -18,7 +18,7 @@ jobs:
         id: cacher
         with:
           path: "C:\\Program Files\\WindowsPowerShell\\Modules\\ps2exe"
-          key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
+          key: ${{ runner.os }}-ps2exe
 
       - name: Install required PowerShell modules
         if: steps.cacher.outputs.cache-hit != 'true'
