@@ -15,7 +15,7 @@ jobs:
 
       - shell: powershell
         run: |
-          C:\\Users\\runneradmin\\ tree
+          tree
 
       - name: Setup PowerShell module cache
         uses: actions/cache@v3
