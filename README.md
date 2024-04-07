@@ -62,7 +62,7 @@ wg_auto_manager.exe is built with the [ps2exe module](https://github.com/MScholt
 
 Install-Module ps2exe
 
-git clone 
+git clone https://github.com/tenekev/wireguard-auto-manager.git
 
 cd ".\wireguard-auto-manager"
 
