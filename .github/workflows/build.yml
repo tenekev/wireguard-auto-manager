@@ -12,7 +12,12 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module ps2exe
-      - name: Get list of rules
+      - name: Build binary
         shell: powershell
         run: |
           . ps2exe wg_auto_manager.ps1 wg_auto_manager.exe -NoConsole -noOutput
+      
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./wireguard-auto-manager/*.exe"
+          bodyFile: "body.md"
