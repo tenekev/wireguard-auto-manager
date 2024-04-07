@@ -1,0 +1,18 @@
+name: Building Executable
+run-name: ${{ github.actor }} 
+on: [push]
+jobs:
+  Run-PS2EXE-on-Windows:
+    name: Run PS2EXE on Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install PS2EXE module
+        shell: powershell
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module ps2exe
+      - name: Get list of rules
+        shell: powershell
+        run: |
+          . ps2exe wg_auto_manager.ps1 wg_auto_manager.exe -NoConsole -noOutput
