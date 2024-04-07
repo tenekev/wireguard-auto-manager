@@ -1,6 +1,10 @@
 name: Building Executable
 run-name: ${{ github.actor }} 
 on: [push]
+
+permissions:
+  contents: write
+
 jobs:
   Run-PS2EXE-on-Windows:
     name: Run PS2EXE on Windows
@@ -8,6 +12,13 @@ jobs:
     steps:
       
       - uses: actions/checkout@v3
+
+      - name: Setup PowerShell module cache
+        id: cacher
+        uses: actions/cache@v3
+        with:
+          path: "C:\Users\runneradmin\Documents\PowerShell\Modules\*"
+          key: ${{ runner.os }}-SqlServer-PSScriptAnalyzer
       
       - name: Install PS2EXE module
         shell: powershell
